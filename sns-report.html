@@ -434,7 +434,12 @@
     .btn-fixed:hover { transform: none; }
   }
 </style>
-<style>textarea, input { pointer-events: none !important; user-select: text !important; -webkit-user-select: text !important; } .img-zone { pointer-events: none !important; }</style></head>
+<style>
+      textarea, input { pointer-events: none !important; user-select: text !important; -webkit-user-select: text !important; }
+      .img-zone { pointer-events: none !important; }
+      .tab-btn { pointer-events: auto !important; }
+      textarea { overflow: visible !important; height: auto !important; resize: none !important; }
+    </style></head>
 <body>
 
 <!-- HEADER -->
@@ -491,15 +496,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-inquiry-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</textarea>
+        <textarea class="card-textarea" id="orig-inquiry-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 94px; min-height: 94px;">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-inquiry-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</textarea>
+        <textarea class="trans-box" id="trans-inquiry-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 94px; min-height: 94px;">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-inquiry-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px;" readonly="" tabindex="-1">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </textarea>
+        <textarea class="memo-input" id="memo-inquiry-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px; min-height: 51px;" readonly="" tabindex="-1">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </textarea>
       </div>
     </div>
   </div><div class="comment-card" id="card-inquiry-2">
@@ -523,15 +528,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-inquiry-2" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1">its broken again.</textarea>
+        <textarea class="card-textarea" id="orig-inquiry-2" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 94px; min-height: 94px;">its broken again.</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-inquiry-2" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1">다시 오류 났어</textarea>
+        <textarea class="trans-box" id="trans-inquiry-2" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 94px; min-height: 94px;">다시 오류 났어</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-inquiry-2" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px;" readonly="" tabindex="-1">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</textarea>
+        <textarea class="memo-input" id="memo-inquiry-2" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px; min-height: 51px;" readonly="" tabindex="-1">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -556,15 +561,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-instagram-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1">Good Novel but I hate AI</textarea>
+        <textarea class="card-textarea" id="orig-instagram-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;">Good Novel but I hate AI</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-instagram-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1">좋은 소설이지만 난 AI 싫어</textarea>
+        <textarea class="trans-box" id="trans-instagram-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;">좋은 소설이지만 난 AI 싫어</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-instagram-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;" readonly="" tabindex="-1">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </textarea>
+        <textarea class="memo-input" id="memo-instagram-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 44px; min-height: 44px;" readonly="" tabindex="-1">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </textarea>
       </div>
     </div>
   </div></div></div>
@@ -579,7 +584,7 @@
         <div class="img-zone" id="zone-youtube-1" style="cursor: default;">
           
           
-          <img class="img-preview" id="img-youtube-1" src="file:///C:/Users/admin/Downloads/sns-comment-report.html" alt="">
+          <img class="img-preview" id="img-youtube-1" src="file:///C:/Users/admin/Downloads/sns-comment-report_1.html" alt="">
           
         </div>
       </div>
@@ -589,15 +594,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-youtube-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="card-textarea" id="orig-youtube-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-youtube-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="trans-box" id="trans-youtube-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-youtube-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1"></textarea>
+        <textarea class="memo-input" id="memo-youtube-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -622,15 +627,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-facebook-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1">Pretty sure they become his wife’s later, so won’t read this</textarea>
+        <textarea class="card-textarea" id="orig-facebook-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;">Pretty sure they become his wife’s later, so won’t read this</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-facebook-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1">얘네가 나중에 저 남자의 아내가 될 게 분명하니까 안 읽을 것</textarea>
+        <textarea class="trans-box" id="trans-facebook-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;">얘네가 나중에 저 남자의 아내가 될 게 분명하니까 안 읽을 것</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-facebook-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;" readonly="" tabindex="-1">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</textarea>
+        <textarea class="memo-input" id="memo-facebook-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 44px; min-height: 44px;" readonly="" tabindex="-1">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</textarea>
       </div>
     </div>
   </div></div> </div>
@@ -645,7 +650,7 @@
         <div class="img-zone" id="zone-twitter-1" style="cursor: default;">
           
           
-          <img class="img-preview" id="img-twitter-1" src="file:///C:/Users/admin/Downloads/sns-comment-report.html" alt="">
+          <img class="img-preview" id="img-twitter-1" src="file:///C:/Users/admin/Downloads/sns-comment-report_1.html" alt="">
           
         </div>
       </div>
@@ -655,15 +660,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-twitter-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="card-textarea" id="orig-twitter-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-twitter-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="trans-box" id="trans-twitter-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-twitter-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1"></textarea>
+        <textarea class="memo-input" id="memo-twitter-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -678,7 +683,7 @@
         <div class="img-zone" id="zone-animation-1" style="cursor: default;">
           
           
-          <img class="img-preview" id="img-animation-1" src="file:///C:/Users/admin/Downloads/sns-comment-report.html" alt="">
+          <img class="img-preview" id="img-animation-1" src="file:///C:/Users/admin/Downloads/sns-comment-report_1.html" alt="">
           
         </div>
       </div>
@@ -688,15 +693,15 @@
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-animation-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="card-textarea" id="orig-animation-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-animation-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1"></textarea>
+        <textarea class="trans-box" id="trans-animation-1" placeholder="번역 결과를 직접 입력하세요…" rows="3" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-animation-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1"></textarea>
+        <textarea class="memo-input" id="memo-animation-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" readonly="" tabindex="-1" style="height: 44px; min-height: 44px;"></textarea>
       </div>
     </div>
   </div></div></div>
@@ -839,10 +844,24 @@ function saveFile(readOnly) {
       el.setAttribute('readonly', '');
       el.setAttribute('tabindex', '-1');
     });
+    /* 모든 textarea 높이를 내용에 맞게 고정 */
+    document.querySelectorAll('textarea').forEach((orig, i) => {
+      const c = clone.querySelectorAll('textarea')[i];
+      if (c) {
+        const lines = (orig.value.match(/\n/g) || []).length + 1;
+        const height = Math.max(orig.scrollHeight, lines * 24 + 20);
+        c.style.height = height + 'px';
+        c.style.minHeight = height + 'px';
+      }
+    });
     clone.querySelectorAll('.img-zone').forEach(el => el.style.cursor = 'default');
-    /* 모바일 포함 완전 잠금 스타일 추가 */
     const lockStyle = document.createElement('style');
-    lockStyle.textContent = 'textarea, input { pointer-events: none !important; user-select: text !important; -webkit-user-select: text !important; } .img-zone { pointer-events: none !important; }';
+    lockStyle.textContent = `
+      textarea, input { pointer-events: none !important; user-select: text !important; -webkit-user-select: text !important; }
+      .img-zone { pointer-events: none !important; }
+      .tab-btn { pointer-events: auto !important; }
+      textarea { overflow: visible !important; height: auto !important; resize: none !important; }
+    `;
     clone.querySelector('head').appendChild(lockStyle);
   }
 
