@@ -3,434 +3,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SNS 댓글 반응 보고서</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=Syne:wght@700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f4f5f7;
+    --bg: #f0f1f5;
     --surface: #ffffff;
-    --surface2: #f0f1f4;
-    --border: #e0e2e9;
-    --accent: #5b52e8;
-    --accent2: #ff4f7b;
-    --text: #1a1a2e;
-    --text-muted: #8a8fa8;
-    --ig: #e1306c;
-    --yt: #ff0000;
-    --fb: #1877f2;
-    --tw: #1da1f2;
-    --anim: #f97316;
-    --inq: #a855f7;
-    --green: #16a34a;
-    --green-bg: #f0fdf4;
-    --green-border: #bbf7d0;
+    --surface2: #f5f6fa;
+    --border: #e2e4ee;
+    --accent: #f43f90;
+    --accent2: #f43f90;
+    --text: #111827;
+    --text-sub: #374151;
+    --text-muted: #9ca3af;
+    --ig: #e1306c; --yt: #ff0000; --fb: #1877f2;
+    --tw: #1da1f2; --anim: #f97316; --inq: #8b5cf6;
+    --green: #059669; --green-bg: #ecfdf5; --green-border: #a7f3d0;
+    --memo-bg: #fffbeb; --memo-border: #fcd34d; --memo-text: #92400e;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.04);
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 0 120px; }
 
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 40px 0 120px;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    max-width: 900px;
-    margin: 0 auto 40px;
-    padding: 0 32px;
-  }
-  .report-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .header-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .report-title {
-    font-size: 34px;
-    font-weight: 900;
-    line-height: 1.15;
-    letter-spacing: -1px;
-  }
-  .report-title span {
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .meta-items { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-  .meta-item { display: flex; align-items: center; gap: 7px; }
-  .meta-item label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .meta-item input {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
-    padding: 5px 10px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
+  /* HEADER */
+  .header { max-width: 900px; margin: 0 auto 36px; padding: 0 32px; }
+  .report-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; opacity: 0.8; }
+  .header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .report-title { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; -webkit-text-stroke: 1px var(--text); paint-order: stroke fill; }
+  .report-title span { color: #f43f90; -webkit-text-fill-color: #f43f90; -webkit-text-stroke: 1px #f43f90; }
+  .meta-items { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .meta-item { display: flex; align-items: center; gap: 6px; }
+  .meta-item label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }
+  .meta-item input { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; padding: 6px 11px; outline: none; transition: border-color 0.2s; box-shadow: var(--shadow-sm); }
   .meta-item input:focus { border-color: var(--accent); }
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    margin-top: 20px;
-    opacity: 0.35;
-  }
+  .divider { height: 2px; background: #f43f90; margin-top: 20px; border-radius: 2px; opacity: 0.2; }
 
-  /* ── MAIN ── */
-  .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
+  /* MAIN */
+  .main { max-width: 900px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; gap: 24px; }
 
-  /* ── TABS ── */
-  .tabs-wrap { display: flex; flex-direction: column; gap: 12px; }
-  .tab-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-  .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  /* TABS */
+  .tabs-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .tab-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
   .tab-btn {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 18px;
-    border-radius: 40px;
-    border: 1.5px solid var(--border);
-    background: transparent;
-    color: var(--text-muted);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.18s;
+    display: flex; align-items: center; gap: 7px;
+    padding: 8px 16px; border-radius: 40px;
+    border: 1.5px solid var(--border); background: var(--surface);
+    color: var(--text-muted); font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.15s; box-shadow: var(--shadow-sm);
+    position: relative;
   }
-  .tab-btn:hover { color: var(--text); border-color: #c0c3d4; }
+  .tab-btn:hover { color: var(--text); border-color: #c5c8da; }
   .tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .tab-btn[data-p="inquiry"]   .tab-dot { background: var(--inq); }
-  .tab-btn[data-p="instagram"] .tab-dot { background: var(--ig); }
-  .tab-btn[data-p="youtube"]   .tab-dot { background: var(--yt); }
-  .tab-btn[data-p="facebook"]  .tab-dot { background: var(--fb); }
-  .tab-btn[data-p="twitter"]   .tab-dot { background: var(--tw); }
-  .tab-btn[data-p="animation"] .tab-dot { background: var(--anim); }
-  .tab-btn.active { color: var(--text); background: #ebebf5; }
-  .tab-btn[data-p="inquiry"].active   { border-color: var(--inq); }
-  .tab-btn[data-p="instagram"].active { border-color: var(--ig); }
-  .tab-btn[data-p="youtube"].active   { border-color: var(--yt); }
-  .tab-btn[data-p="facebook"].active  { border-color: var(--fb); }
-  .tab-btn[data-p="twitter"].active   { border-color: var(--tw); }
-  .tab-btn[data-p="animation"].active { border-color: var(--anim); }
+  .tab-btn.active { font-weight: 700; }
+  .tab-btn[data-p="inquiry"].active   { border-color: var(--inq);  color: var(--inq); }
+  .tab-btn[data-p="instagram"].active { border-color: var(--ig);   color: var(--ig); }
+  .tab-btn[data-p="youtube"].active   { border-color: var(--yt);   color: var(--yt); }
+  .tab-btn[data-p="facebook"].active  { border-color: var(--fb);   color: var(--fb); }
+  .tab-btn[data-p="twitter"].active   { border-color: var(--tw);   color: var(--tw); }
+  .tab-btn[data-p="animation"].active { border-color: var(--anim); color: var(--anim); }
+  /* 숨김 처리된 탭 */
+  .tab-btn.tab-hidden { opacity: 0.35; text-decoration: line-through; }
+  .tab-hide-btn {
+    margin-left: 4px; background: none; border: none;
+    font-size: 11px; color: var(--text-muted); cursor: pointer;
+    padding: 0 2px; line-height: 1; opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+  .tab-hide-btn:hover { opacity: 1; }
+  .tab-btn.tab-hidden .tab-hide-btn { opacity: 0.8; color: var(--accent); }
 
-  /* ── SECTIONS ── */
-  .platform-section { display: none; flex-direction: column; gap: 16px; }
+  /* SECTIONS */
+  .platform-section { display: none; flex-direction: column; gap: 14px; }
   .platform-section.active { display: flex; }
 
-  /* ── COMMENT CARD ── */
-  .comment-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .comment-card:hover { border-color: #c8cad8; }
+  /* CARD */
+  .comment-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, border-color 0.2s; }
+  .comment-card:hover { box-shadow: var(--shadow-md); border-color: #cdd0e0; }
 
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 11px 16px;
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-  }
-  .card-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-  }
-  .card-del {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 15px;
-    cursor: pointer;
-    padding: 2px 6px;
-    border-radius: 4px;
-    transition: all 0.15s;
-    line-height: 1;
-  }
-  .card-del:hover { color: var(--accent2); background: rgba(255,101,132,0.1); }
+  .card-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: #fff5f9; border-bottom: 1.5px solid var(--border); }
+  .card-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: var(--accent); letter-spacing: 0.5px; }
+  .card-del { background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 3px 7px; border-radius: 6px; transition: all 0.15s; line-height: 1; }
+  .card-del:hover { color: var(--accent2); background: #fff0f3; }
 
-  .card-body {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  .card-body { display: flex; flex-direction: column; }
+  .card-body.collapsed { display: none; }
 
-  /* ── FIELD ── */
-  .field { display: flex; flex-direction: column; gap: 7px; }
+  /* FIELD */
+  .field { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+  .field:last-child { border-bottom: none; }
+
   .field-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-    text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 14px 6px;
+    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.8px;
+    color: var(--text-sub); background: var(--surface2);
+    border-bottom: 1px solid var(--border); text-transform: uppercase;
   }
+  .field-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 17px; height: 17px; background: var(--accent); color: #fff;
+    border-radius: 4px; font-size: 9px; font-weight: 700; flex-shrink: 0;
+  }
+  .field.f-trans .field-label { background: #f0fdf8; border-color: #d1fae5; color: #065f46; }
+  .field.f-trans .field-num   { background: var(--green); }
+  .field.f-memo  .field-label { background: var(--memo-bg); border-color: #fde68a; color: var(--memo-text); }
+  .field.f-memo  .field-num   { background: #fbbf24; color: #78350f; }
 
-  /* ── IMAGE ZONE ── */
-  .img-zone {
-    position: relative;
-    border: 1.5px dashed var(--border);
-    border-radius: 10px;
-    min-height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    background: var(--surface2);
-    transition: all 0.18s;
-  }
-  .img-zone:hover, .img-zone.dragover {
-    border-color: var(--accent);
-    background: rgba(108,99,255,0.06);
-  }
-  .img-zone.filled { min-height: unset; border-style: solid; border-color: #d0d3df; background: transparent; }
-  .img-zone.filled:hover { border-color: var(--accent); }
-  .img-zone input[type="file"] {
-    position: absolute; inset: 0;
-    opacity: 0; cursor: pointer;
-    width: 100%; height: 100%;
-  }
+  /* IMAGE ZONE */
+  .img-zone { position: relative; min-height: 72px; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; background: var(--surface2); transition: background 0.18s; }
+  .img-zone:hover, .img-zone.dragover { background: #eef0ff; }
+  .img-zone.filled { min-height: unset; background: #fafafa; }
+  .img-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .img-zone.filled input[type="file"] { display: none; }
-  .img-hint {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 8px;
-    color: var(--text-muted);
-    pointer-events: none; user-select: none;
-    text-align: center; padding: 16px;
-  }
-  .img-hint-icon { font-size: 26px; opacity: 0.4; }
-  .img-hint-text { font-size: 13px; }
-  .img-hint-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 1px; }
+  .img-hint { display: flex; flex-direction: column; align-items: center; gap: 5px; color: var(--text-muted); pointer-events: none; user-select: none; text-align: center; padding: 12px; }
+  .img-hint-icon { font-size: 18px; opacity: 0.3; }
+  .img-hint-text { font-size: 12px; }
+  .img-hint-sub { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 1px; opacity: 0.6; }
   .img-zone.filled .img-hint { display: none; }
-  .img-preview { width: 100%; display: none; border-radius: 8px; }
+  .img-preview { width: 100%; display: none; max-height: 200px; object-fit: contain; }
   .img-zone.filled .img-preview { display: block; }
-  .img-del {
-    position: absolute; top: 8px; right: 8px;
-    background: rgba(0,0,0,0.65);
-    border: none; color: #fff;
-    border-radius: 50%;
-    width: 24px; height: 24px;
-    font-size: 12px; cursor: pointer;
-    display: none; align-items: center; justify-content: center;
-    line-height: 1; z-index: 2;
-    transition: background 0.15s;
-  }
+  .img-del { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.5); border: none; color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; line-height: 1; z-index: 2; transition: background 0.15s; }
   .img-del:hover { background: var(--accent2); }
   .img-zone.filled .img-del { display: flex; }
 
-  /* ── TEXTAREA (원문) ── */
-  .card-textarea {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    line-height: 1.75;
-    padding: 10px 14px;
-    resize: vertical;
-    outline: none;
-    min-height: 72px;
-    transition: border-color 0.18s;
-  }
-  .card-textarea:focus { border-color: var(--accent); }
+  /* TEXTAREAS */
+  .card-textarea { width: 100%; background: transparent; border: none; color: var(--text); font-family: 'Noto Sans KR', sans-serif; font-size: 14px; line-height: 1.8; padding: 11px 16px; resize: none; outline: none; min-height: 68px; transition: background 0.15s; }
+  .card-textarea:focus { background: #fafbff; }
   .card-textarea::placeholder { color: var(--text-muted); }
-  input.card-textarea { resize: none; }
+  input.card-textarea { min-height: unset; padding: 10px 16px; }
 
-  /* ── 번역 결과 박스 ── */
-  .trans-box {
-    width: 100%;
-    background: var(--green-bg);
-    border: 1px solid var(--green-border);
-    border-radius: 8px;
-    color: #166534;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    line-height: 1.75;
-    padding: 10px 14px;
-    resize: vertical;
-    outline: none;
-    min-height: 72px;
-    transition: border-color 0.18s;
-  }
-  .trans-box:focus { border-color: var(--green); }
-  .trans-box::placeholder { color: #86efac; }
+  .trans-box { width: 100%; background: transparent; border: none; color: #065f46; font-family: 'Noto Sans KR', sans-serif; font-size: 14px; line-height: 1.8; padding: 11px 16px; resize: none; outline: none; min-height: 68px; transition: background 0.15s; }
+  .trans-box:focus { background: #f0fdf9; }
+  .trans-box::placeholder { color: #6ee7b7; }
 
-  /* ── 메모 ── */
-  .memo-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-left: 2px solid var(--accent);
-    padding: 4px 12px;
-    color: var(--text-muted);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    outline: none;
-    resize: none;
-    overflow: hidden;
-    line-height: 1.8;
-    min-height: 28px;
-    word-break: break-word;
-    white-space: pre-wrap;
-    box-sizing: border-box;
-    display: block;
-  }
-  .memo-input:focus { border-left-color: var(--accent2); color: var(--text); }
-  .memo-input::placeholder { color: #c0c3d4; }
+  /* MEMO */
+  .memo-wrap { background: var(--memo-bg); padding: 10px 16px 13px; }
+  .memo-input { width: 100%; background: transparent; border: none; border-left: 3px solid #fcd34d; padding: 3px 0 3px 12px; color: var(--memo-text); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 500; outline: none; resize: none; overflow: hidden; line-height: 1.8; min-height: 26px; word-break: break-word; white-space: pre-wrap; box-sizing: border-box; display: block; }
+  .memo-input:focus { border-left-color: #f59e0b; }
+  .memo-input::placeholder { color: #fbbf24; }
 
-  /* ── 댓글 추가 버튼 ── */
-  .add-btn {
-    display: flex; align-items: center; justify-content: center;
-    gap: 8px;
-    padding: 13px;
-    border: 1.5px dashed var(--border);
-    border-radius: 12px;
-    background: transparent;
-    color: var(--text-muted);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.18s;
-    width: 100%;
-  }
-  .add-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(108,99,255,0.04);
-  }
+  /* ADD BTN */
+  .add-btn { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 12px; border: 2px dashed var(--border); border-radius: 14px; background: transparent; color: var(--text-muted); font-family: 'Noto Sans KR', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.18s; width: 100%; }
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); background: #f5f4ff; }
 
-  /* ── 하단 버튼 ── */
-  .bottom-btns {
-    position: fixed;
-    bottom: 28px; right: 28px;
-    display: flex; gap: 10px;
-    z-index: 200;
-  }
-  .btn-fixed {
-    display: flex; align-items: center; gap: 7px;
-    padding: 13px 22px;
-    border: none; border-radius: 50px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer;
-    transition: all 0.18s;
-    white-space: nowrap;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  }
-  .btn-print {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-  }
-  .btn-print:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(108,99,255,0.5); }
-  .btn-save-work {
-    background: linear-gradient(135deg, #1a6a8a, #2db8e0);
-    color: #fff;
-  }
-  .btn-save-work:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(45,184,224,0.45); }
-  .btn-save-share {
-    background: linear-gradient(135deg, #1a7a45, #2dd06e);
-    color: #fff;
-  }
-  .btn-save-share:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(45,208,110,0.45); }
+  /* BOTTOM BTNS */
+  .bottom-btns { position: fixed; bottom: 24px; right: 24px; display: flex; gap: 8px; z-index: 200; }
+  .btn-fixed { display: flex; align-items: center; gap: 6px; padding: 12px 20px; border: none; border-radius: 50px; font-family: 'Noto Sans KR', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.18s; white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.14); }
+  .btn-print      { background: #1e1e2e; color: #fff; }
+  .btn-print:hover { background: #2d2d44; transform: translateY(-2px); }
+  .btn-save-work  { background: #0369a1; color: #fff; }
+  .btn-save-work:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(3,105,161,0.4); }
+  .btn-save-share { background: #f43f90; color: #fff; }
+  .btn-save-share:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,63,144,0.4); }
 
-  /* ── 인쇄 ── */
+  /* PRINT */
   @media print {
     .bottom-btns { display: none; }
     body { background: #fff; color: #111; padding: 24px; }
     .platform-section { display: flex !important; }
     .tabs { display: none; }
     .card-del, .add-btn, .img-del { display: none !important; }
-    .comment-card { border: 1px solid #ddd; break-inside: avoid; margin-bottom: 16px; }
-    .card-textarea { background: #f8f8f8; border-color: #ddd; color: #111; }
-    .trans-box { background: #f2fff7; border-color: #b2e8c4; color: #1a5c2a; }
-    .img-zone { background: #f5f5f5; border-color: #ddd; }
-    .img-zone.filled { background: transparent; }
+    .comment-card { border: 1px solid #ddd; break-inside: avoid; margin-bottom: 16px; box-shadow: none; }
+    .field-label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .memo-wrap { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
-  /* ── 모바일 ── */
+  /* MOBILE */
   @media (max-width: 600px) {
-    body { padding: 24px 0 140px; }
+    body { padding: 20px 0 140px; }
+    .header { padding: 0 16px; margin-bottom: 24px; }
+    .report-title { font-size: 22px; }
+    .header-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .main { padding: 0 16px; gap: 14px; }
 
-    .header { padding: 0 16px; margin-bottom: 28px; }
-    .report-title { font-size: 26px; }
-    .header-row { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .meta-items { gap: 10px; }
-    .meta-item input { font-size: 13px; }
-
-    .main { padding: 0 16px; gap: 20px; }
-
-    .tabs { gap: 6px; }
-    .tab-btn { padding: 8px 14px; font-size: 12px; gap: 6px; }
+    .tabs { gap: 5px; flex-wrap: wrap; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; gap: 5px; }
     .tab-dot { width: 6px; height: 6px; }
+    .tab-hide-btn { font-size: 13px; padding: 2px 3px; opacity: 0.7; }
 
-    .card-body { padding: 14px; gap: 14px; }
-    .card-textarea, .trans-box { font-size: 14px; padding: 9px 12px; }
-    .memo-input { font-size: 12px; }
+    .card-textarea, .trans-box { font-size: 14px; padding: 10px 14px; }
+    .field-label { font-size: 9px; padding: 6px 12px 5px; }
+    .field-num { width: 15px; height: 15px; font-size: 8px; }
+    .memo-input { font-size: 13px; }
+    .memo-wrap { padding: 9px 14px 11px; }
 
-    .img-hint-text { font-size: 12px; }
-
-    .bottom-btns {
-      bottom: 0; right: 0; left: 0;
-      flex-direction: row;
-      justify-content: stretch;
-      gap: 0;
-      padding: 10px 12px;
-      background: rgba(244,245,247,0.96);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border);
-    }
-    .btn-fixed {
-      flex: 1;
-      justify-content: center;
-      padding: 12px 8px;
-      font-size: 12px;
-      border-radius: 10px;
-      margin: 0 4px;
-      box-shadow: none;
-    }
+    .bottom-btns { bottom: 0; right: 0; left: 0; padding: 10px 12px; background: rgba(240,241,245,0.97); backdrop-filter: blur(16px); border-top: 1px solid var(--border); gap: 0; }
+    .btn-fixed { flex: 1; justify-content: center; padding: 11px 4px; font-size: 11px; border-radius: 10px; margin: 0 3px; box-shadow: none; }
     .btn-fixed:hover { transform: none; }
   }
 </style>
@@ -461,23 +221,26 @@
   <div class="tabs-wrap">
     <div class="tab-label">💬 플랫폼별 댓글</div>
     <div class="tabs">
-      <button class="tab-btn active" data-p="inquiry" onclick="switchTab('inquiry')">  <span class="tab-dot"></span>문의사항</button>
-      <button class="tab-btn" data-p="instagram" onclick="switchTab('instagram')"><span class="tab-dot"></span>인스타그램</button>
-      <button class="tab-btn" data-p="youtube" onclick="switchTab('youtube')">  <span class="tab-dot"></span>유튜브</button>
-      <button class="tab-btn" data-p="facebook" onclick="switchTab('facebook')"> <span class="tab-dot"></span>페이스북</button>
-      <button class="tab-btn" data-p="twitter" onclick="switchTab('twitter')">  <span class="tab-dot"></span>X (트위터)</button>
-      <button class="tab-btn" data-p="animation" onclick="switchTab('animation')"><span class="tab-dot"></span>애니메이션</button>
+      <button class="tab-btn active" data-p="inquiry" onclick="switchTab('inquiry')">  <span class="tab-dot" style="background:var(--inq)"></span>문의사항</button>
+      <button class="tab-btn" data-p="instagram" onclick="switchTab('instagram')"><span class="tab-dot" style="background:var(--ig)"></span>인스타그램</button>
+      
+      <button class="tab-btn" data-p="facebook" onclick="switchTab('facebook')"> <span class="tab-dot" style="background:var(--fb)"></span>페이스북</button>
+      
+      
     </div>
   </div>
 
   <div id="sec-inquiry" class="platform-section active"><div id="list-inquiry"><div class="comment-card" id="card-inquiry-1">
-    <div class="card-header">
+    <div class="card-header" onclick="toggleCard('inquiry-1')" style="cursor:pointer;">
       <span class="card-num"># 01</span>
-      
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span class="card-toggle" style="font-size:10px;color:var(--text-muted);">▲</span>
+        
+      </span>
     </div>
     <div class="card-body">
       <div class="field">
-        <div class="field-label">① 스크린샷</div>
+        <div class="field-label"><span class="field-num">1</span>스크린샷</div>
         <div class="img-zone filled" id="zone-inquiry-1">
           
           
@@ -486,30 +249,35 @@
         </div>
       </div>
       <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지" readonly style="pointer-events:none;">
+        <div class="field-label"><span class="field-num">2</span>콘텐츠 제목</div>
+        <input class="card-textarea" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지" readonly style="pointer-events:none;">
       </div>
       <div class="field">
-        <div class="field-label">③ 원문</div>
+        <div class="field-label"><span class="field-num">3</span>원문</div>
         <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</div>
       </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
+      <div class="field f-trans">
+        <div class="field-label"><span class="field-num">4</span>번역 결과</div>
         <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</div>
       </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: 51px;;white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </div>
+      <div class="field f-memo">
+        <div class="field-label"><span class="field-num">5</span>메모</div>
+        <div class="memo-wrap">
+          <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </div>
+        </div>
       </div>
     </div>
   </div><div class="comment-card" id="card-inquiry-2">
-    <div class="card-header">
+    <div class="card-header" onclick="toggleCard('inquiry-2')" style="cursor:pointer;">
       <span class="card-num"># 02</span>
-      
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span class="card-toggle" style="font-size:10px;color:var(--text-muted);">▲</span>
+        
+      </span>
     </div>
     <div class="card-body">
       <div class="field">
-        <div class="field-label">① 스크린샷</div>
+        <div class="field-label"><span class="field-num">1</span>스크린샷</div>
         <div class="img-zone filled" id="zone-inquiry-2">
           
           
@@ -518,31 +286,36 @@
         </div>
       </div>
       <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM" readonly style="pointer-events:none;">
+        <div class="field-label"><span class="field-num">2</span>콘텐츠 제목</div>
+        <input class="card-textarea" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM" readonly style="pointer-events:none;">
       </div>
       <div class="field">
-        <div class="field-label">③ 원문</div>
+        <div class="field-label"><span class="field-num">3</span>원문</div>
         <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">its broken again.</div>
       </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
+      <div class="field f-trans">
+        <div class="field-label"><span class="field-num">4</span>번역 결과</div>
         <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">다시 오류 났어</div>
       </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: 51px;;white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</div>
+      <div class="field f-memo">
+        <div class="field-label"><span class="field-num">5</span>메모</div>
+        <div class="memo-wrap">
+          <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</div>
+        </div>
       </div>
     </div>
   </div></div>  </div>
   <div id="sec-instagram" class="platform-section">       <div id="list-instagram"><div class="comment-card" id="card-instagram-1">
-    <div class="card-header">
+    <div class="card-header" onclick="toggleCard('instagram-1')" style="cursor:pointer;">
       <span class="card-num"># 01</span>
-      
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span class="card-toggle" style="font-size:10px;color:var(--text-muted);">▲</span>
+        
+      </span>
     </div>
     <div class="card-body">
       <div class="field">
-        <div class="field-label">① 스크린샷</div>
+        <div class="field-label"><span class="field-num">1</span>스크린샷</div>
         <div class="img-zone filled" id="zone-instagram-1">
           
           
@@ -551,64 +324,37 @@
         </div>
       </div>
       <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 " readonly style="pointer-events:none;">
+        <div class="field-label"><span class="field-num">2</span>콘텐츠 제목</div>
+        <input class="card-textarea" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 " readonly style="pointer-events:none;">
       </div>
       <div class="field">
-        <div class="field-label">③ 원문</div>
+        <div class="field-label"><span class="field-num">3</span>원문</div>
         <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">Good Novel but I hate AI</div>
       </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
+      <div class="field f-trans">
+        <div class="field-label"><span class="field-num">4</span>번역 결과</div>
         <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">좋은 소설이지만 난 AI 싫어</div>
       </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: 0px;;white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </div>
+      <div class="field f-memo">
+        <div class="field-label"><span class="field-num">5</span>메모</div>
+        <div class="memo-wrap">
+          <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </div>
+        </div>
       </div>
     </div>
   </div></div></div>
-  <div id="sec-youtube" class="platform-section">       <div id="list-youtube"><div class="comment-card" id="card-youtube-1">
-    <div class="card-header">
-      <span class="card-num"># 01</span>
-      
-    </div>
-    <div class="card-body">
-      <div class="field">
-        <div class="field-label">① 스크린샷</div>
-        <div class="img-zone" id="zone-youtube-1">
-          
-          
-          <img class="img-preview" id="img-youtube-1" src="" alt="">
-          
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-youtube-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly style="pointer-events:none;">
-      </div>
-      <div class="field">
-        <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-    </div>
-  </div></div>  </div>
+  
   <div id="sec-facebook" class="platform-section">       <div id="list-facebook"><div class="comment-card" id="card-facebook-1">
-    <div class="card-header">
+    <div class="card-header" onclick="toggleCard('facebook-1')" style="cursor:pointer;">
       <span class="card-num"># 01</span>
-      
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span class="card-toggle" style="font-size:10px;color:var(--text-muted);">▲</span>
+        
+      </span>
     </div>
     <div class="card-body">
       <div class="field">
-        <div class="field-label">① 스크린샷</div>
+        <div class="field-label"><span class="field-num">1</span>스크린샷</div>
         <div class="img-zone filled" id="zone-facebook-1">
           
           
@@ -617,89 +363,27 @@
         </div>
       </div>
       <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고" readonly style="pointer-events:none;">
+        <div class="field-label"><span class="field-num">2</span>콘텐츠 제목</div>
+        <input class="card-textarea" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고" readonly style="pointer-events:none;">
       </div>
       <div class="field">
-        <div class="field-label">③ 원문</div>
+        <div class="field-label"><span class="field-num">3</span>원문</div>
         <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">Pretty sure they become his wife’s later, so won’t read this</div>
       </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
+      <div class="field f-trans">
+        <div class="field-label"><span class="field-num">4</span>번역 결과</div>
         <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">얘네가 나중에 저 남자의 아내가 될 게 분명하니까 안 읽을 것</div>
       </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: 0px;;white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</div>
+      <div class="field f-memo">
+        <div class="field-label"><span class="field-num">5</span>메모</div>
+        <div class="memo-wrap">
+          <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</div>
+        </div>
       </div>
     </div>
   </div></div> </div>
-  <div id="sec-twitter" class="platform-section">       <div id="list-twitter"><div class="comment-card" id="card-twitter-1">
-    <div class="card-header">
-      <span class="card-num"># 01</span>
-      
-    </div>
-    <div class="card-body">
-      <div class="field">
-        <div class="field-label">① 스크린샷</div>
-        <div class="img-zone" id="zone-twitter-1">
-          
-          
-          <img class="img-preview" id="img-twitter-1" src="" alt="">
-          
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-twitter-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly style="pointer-events:none;">
-      </div>
-      <div class="field">
-        <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-    </div>
-  </div></div>  </div>
-  <div id="sec-animation" class="platform-section">       <div id="list-animation"><div class="comment-card" id="card-animation-1">
-    <div class="card-header">
-      <span class="card-num"># 01</span>
-      
-    </div>
-    <div class="card-body">
-      <div class="field">
-        <div class="field-label">① 스크린샷</div>
-        <div class="img-zone" id="zone-animation-1">
-          
-          
-          <img class="img-preview" id="img-animation-1" src="" alt="">
-          
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-animation-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly style="pointer-events:none;">
-      </div>
-      <div class="field">
-        <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="white-space:pre-wrap;word-break:break-word;height:auto;overflow:visible;cursor:default;"></div>
-      </div>
-    </div>
-  </div></div></div>
+  
+  
 </div>
 
 <!-- 하단 버튼 -->
