@@ -434,38 +434,7 @@
     .btn-fixed:hover { transform: none; }
   }
 </style>
-<style>
-      textarea, input[type=text], input[type=date] {
-        pointer-events: none !important;
-        resize: none !important;
-        overflow: visible !important;
-        height: auto !important;
-        min-height: unset !important;
-        white-space: pre-wrap !important;
-        word-break: break-word !important;
-        border: none !important;
-        background: transparent !important;
-        padding: 0 !important;
-      }
-      .card-textarea {
-        background: var(--surface2) !important;
-        border: 1px solid var(--border) !important;
-        padding: 10px 14px !important;
-        border-radius: 8px !important;
-      }
-      .trans-box {
-        background: var(--green-bg) !important;
-        border: 1px solid var(--green-border) !important;
-        padding: 10px 14px !important;
-        border-radius: 8px !important;
-      }
-      .memo-input {
-        border-left: 2px solid var(--accent) !important;
-        padding: 4px 12px !important;
-      }
-      .img-zone { pointer-events: none !important; }
-      .tab-btn { pointer-events: auto !important; cursor: pointer !important; }
-    </style></head>
+</head>
 <body>
 
 <!-- HEADER -->
@@ -476,11 +445,11 @@
     <div class="meta-items">
       <div class="meta-item">
         <label>담당자</label>
-        <input type="text" id="meta-author" placeholder="이름" style="width:100px" value="황유진">
+        <input type="text" id="meta-author" placeholder="이름" style="width: 100px; pointer-events: none;" value="황유진" readonly="">
       </div>
       <div class="meta-item">
         <label>보고일</label>
-        <input type="date" id="meta-date" style="width:140px" value="2026-03-04">
+        <input type="date" id="meta-date" style="width: 140px; pointer-events: none;" value="2026-03-04" readonly="">
       </div>
     </div>
   </div>
@@ -518,11 +487,11 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지" readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-inquiry-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</textarea>
+        <p class="card-textarea" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</p>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
@@ -530,7 +499,7 @@
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-inquiry-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </textarea>
+        <p class="memo-input" style="height: auto; white-space: pre-wrap; word-break: break-word; overflow: visible; cursor: default;">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</p>
       </div>
     </div>
   </div><div class="comment-card" id="card-inquiry-2">
@@ -550,7 +519,7 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM" readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
@@ -558,7 +527,7 @@
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-inquiry-2" placeholder="번역 결과를 직접 입력하세요…" rows="3">다시 오류 났어</textarea>
+        <p class="trans-box" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </p>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
@@ -583,11 +552,11 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 ">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 " readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-instagram-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Good Novel but I hate AI</textarea>
+        <p class="card-textarea" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">its broken again.</p>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
@@ -595,7 +564,7 @@
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-instagram-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </textarea>
+        <p class="memo-input" style="height: auto; white-space: pre-wrap; word-break: break-word; overflow: visible; cursor: default;">다시 오류 났어</p>
       </div>
     </div>
   </div></div></div>
@@ -616,7 +585,7 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-youtube-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-youtube-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
@@ -624,7 +593,7 @@
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-youtube-1" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
+        <p class="trans-box" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</p>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
@@ -649,11 +618,11 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고" readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-facebook-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Pretty sure they become his wife’s later, so won’t read this</textarea>
+        <p class="card-textarea" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">Good Novel but I hate AI</p>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
@@ -661,7 +630,7 @@
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-facebook-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</textarea>
+        <p class="memo-input" style="height: auto; white-space: pre-wrap; word-break: break-word; overflow: visible; cursor: default;">좋은 소설이지만 난 AI 싫어</p>
       </div>
     </div>
   </div></div> </div>
@@ -682,7 +651,7 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-twitter-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-twitter-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
@@ -690,7 +659,7 @@
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-twitter-1" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
+        <p class="trans-box" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </p>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
@@ -715,11 +684,11 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-animation-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
+        <input class="card-textarea" style="min-height: unset; padding: 10px 14px; pointer-events: none;" id="title-animation-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-animation-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3"></textarea>
+        <p class="card-textarea" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;"></p>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
@@ -727,7 +696,7 @@
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-animation-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)"></textarea>
+        <p class="memo-input" style="white-space: pre-wrap; word-break: break-word; height: auto; overflow: visible; cursor: default;"></p>
       </div>
     </div>
   </div></div></div>
