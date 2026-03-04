@@ -435,7 +435,34 @@
   }
 </style>
 <style>
-      input { pointer-events: none !important; }
+      textarea, input[type=text], input[type=date] {
+        pointer-events: none !important;
+        resize: none !important;
+        overflow: visible !important;
+        height: auto !important;
+        min-height: unset !important;
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .card-textarea {
+        background: var(--surface2) !important;
+        border: 1px solid var(--border) !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+      }
+      .trans-box {
+        background: var(--green-bg) !important;
+        border: 1px solid var(--green-border) !important;
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+      }
+      .memo-input {
+        border-left: 2px solid var(--accent) !important;
+        padding: 4px 12px !important;
+      }
       .img-zone { pointer-events: none !important; }
       .tab-btn { pointer-events: auto !important; cursor: pointer !important; }
     </style></head>
@@ -449,11 +476,11 @@
     <div class="meta-items">
       <div class="meta-item">
         <label>담당자</label>
-        <input type="text" id="meta-author" placeholder="이름" style="width:100px" value="황유진" readonly="" tabindex="-1">
+        <input type="text" id="meta-author" placeholder="이름" style="width:100px" value="황유진">
       </div>
       <div class="meta-item">
         <label>보고일</label>
-        <input type="date" id="meta-date" style="width:140px" value="2026-03-04" readonly="" tabindex="-1">
+        <input type="date" id="meta-date" style="width:140px" value="2026-03-04">
       </div>
     </div>
   </div>
@@ -491,19 +518,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지" readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="트위터 1달러 할인 공지">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</div>
+        <textarea class="card-textarea" id="orig-inquiry-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Excuse me sir but I always got error when I try paying subscription using payletter can we back using PayPal like in the past. It's annoying when the payletter and the bank side throw blame to each other whenever I try inquiry why the transaction error</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</div>
+        <textarea class="trans-box" id="trans-inquiry-1" placeholder="번역 결과를 직접 입력하세요…" rows="3">실례합니다만, Payletter를 사용해 구독 결제를 시도할 때마다 항상 오류가 발생합니다. 예전처럼 PayPal로 다시 결제할 수 있게 해주실 수 있나요? 거래 오류에 대해 문의할 때마다 Payletter와 은행 측이 서로에게 책임을 떠넘겨서 매우 불편합니다.</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </div>
+        <textarea class="memo-input" id="memo-inquiry-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px;">페이레터 오류와 관련한 문의입니다. 페이팔을 다시 적용하는 것은 현재로써 어려운 것으로 알고 있어서, 혹시 유저에게 문의 답변할 수 있는 부분이 있을까요? </textarea>
       </div>
     </div>
   </div><div class="comment-card" id="card-inquiry-2">
@@ -523,19 +550,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM" readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-inquiry-2" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="페이스북 DM">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">its broken again.</div>
+        <textarea class="card-textarea" id="orig-inquiry-2" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">its broken again.</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">다시 오류 났어</div>
+        <textarea class="trans-box" id="trans-inquiry-2" placeholder="번역 결과를 직접 입력하세요…" rows="3">다시 오류 났어</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</div>
+        <textarea class="memo-input" id="memo-inquiry-2" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 51px;">모바일 상으로 봤을 때의 레이아웃 오류로 보입니다. 본인이 모바일 웹으로 확인했을 때에는 문제가 없어서, 혹시 아직도 같은 문제 발생하고 있는지 유저에게 묻고자 합니다. 혹시 비슷한 문의나 오류사항 제보 있었을까요?</textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -556,19 +583,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 " readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-instagram-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;던전제물&gt; 애니메이션 광고 ">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">Good Novel but I hate AI</div>
+        <textarea class="card-textarea" id="orig-instagram-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Good Novel but I hate AI</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">좋은 소설이지만 난 AI 싫어</div>
+        <textarea class="trans-box" id="trans-instagram-1" placeholder="번역 결과를 직접 입력하세요…" rows="3">좋은 소설이지만 난 AI 싫어</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </div>
+        <textarea class="memo-input" id="memo-instagram-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;">AI에 대한 부정적 반응입니다. 웹소설에 긍정적이거나 웹소설 애호 유저일수록 AI에 대한 부정적인 반응이 있는 것으로 보입니다. </textarea>
       </div>
     </div>
   </div></div></div>
@@ -589,19 +616,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-youtube-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-youtube-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="card-textarea" id="orig-youtube-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="trans-box" id="trans-youtube-1" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="memo-input" id="memo-youtube-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)"></textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -622,19 +649,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고" readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-facebook-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="&lt;드래곤알&gt; 5초 광고">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">Pretty sure they become his wife’s later, so won’t read this</div>
+        <textarea class="card-textarea" id="orig-facebook-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3">Pretty sure they become his wife’s later, so won’t read this</textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">얘네가 나중에 저 남자의 아내가 될 게 분명하니까 안 읽을 것</div>
+        <textarea class="trans-box" id="trans-facebook-1" placeholder="번역 결과를 직접 입력하세요…" rows="3">얘네가 나중에 저 남자의 아내가 될 게 분명하니까 안 읽을 것</textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</div>
+        <textarea class="memo-input" id="memo-facebook-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)" style="height: 0px;">부정적인 뉘앙스이지만, 작품에 대한 직접적인 내용이라기보다는 비슷한 포맷의 비슷한 내용에 대한 불만 표시로 보입니다.</textarea>
       </div>
     </div>
   </div></div> </div>
@@ -655,19 +682,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-twitter-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-twitter-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="card-textarea" id="orig-twitter-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="trans-box" id="trans-twitter-1" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="memo-input" id="memo-twitter-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)"></textarea>
       </div>
     </div>
   </div></div>  </div>
@@ -688,19 +715,19 @@
       </div>
       <div class="field">
         <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-animation-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음." readonly="" tabindex="-1">
+        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-animation-1" type="text" placeholder="콘텐츠 제목을 입력하세요…" value="특이사항 없음.">
       </div>
       <div class="field">
         <div class="field-label">③ 원문</div>
-        <div class="card-textarea" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="card-textarea" id="orig-animation-1" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">④ 번역 결과</div>
-        <div class="trans-box" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="trans-box" id="trans-animation-1" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
       </div>
       <div class="field">
         <div class="field-label">⑤ 메모</div>
-        <div class="memo-input" style="height: auto; min-height: unset; overflow: visible; white-space: pre-wrap; word-break: break-word; cursor: default;"></div>
+        <textarea class="memo-input" id="memo-animation-1" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)"></textarea>
       </div>
     </div>
   </div></div></div>
@@ -709,261 +736,14 @@
 <!-- 하단 버튼 -->
 
 
+
+
+
 <script>
-const PLATFORMS = ['inquiry','instagram','youtube','facebook','twitter','animation'];
-const counters  = Object.fromEntries(PLATFORMS.map(p => [p, 0]));
-
-/* ── 메모 자동 높이 ── */
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = (el.scrollHeight) + 'px';
-}
-
-/* ── 탭 전환 ── */
-function switchTab(p) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.platform-section').forEach(s => s.classList.remove('active'));
-  document.querySelector(`.tab-btn[data-p="${p}"]`).classList.add('active');
-  document.getElementById(`sec-${p}`).classList.add('active');
-}
-
-/* ── 카드 HTML 생성 ── */
-function buildCard(id, n) {
-  return `
-    <div class="card-header">
-      <span class="card-num"># ${String(n).padStart(2,'0')}</span>
-      <button class="card-del" onclick="delCard('${id}')">✕</button>
-    </div>
-    <div class="card-body">
-      <div class="field">
-        <div class="field-label">① 스크린샷</div>
-        <div class="img-zone" id="zone-${id}">
-          <input type="file" accept="image/*" onchange="handleFile(event,'${id}')">
-          <div class="img-hint">
-            <div class="img-hint-icon">🖼️</div>
-            <div class="img-hint-text">드래그하거나 클릭해서 업로드</div>
-            <div class="img-hint-sub">PNG · JPG · WEBP</div>
-          </div>
-          <img class="img-preview" id="img-${id}" src="" alt="">
-          <button class="img-del" onclick="delImg(event,'${id}')">✕</button>
-        </div>
-      </div>
-      <div class="field">
-        <div class="field-label">② 콘텐츠 제목</div>
-        <input class="card-textarea" style="min-height:unset;padding:10px 14px;" id="title-${id}" type="text" placeholder="콘텐츠 제목을 입력하세요…">
-      </div>
-      <div class="field">
-        <div class="field-label">③ 원문</div>
-        <textarea class="card-textarea" id="orig-${id}" placeholder="댓글 원문을 입력하거나 붙여넣으세요…" rows="3"></textarea>
-      </div>
-      <div class="field">
-        <div class="field-label">④ 번역 결과</div>
-        <textarea class="trans-box" id="trans-${id}" placeholder="번역 결과를 직접 입력하세요…" rows="3"></textarea>
-      </div>
-      <div class="field">
-        <div class="field-label">⑤ 메모</div>
-        <textarea class="memo-input" id="memo-${id}" placeholder="뉘앙스, 분석 코멘트 등…" rows="1" oninput="autoResize(this)"></textarea>
-      </div>
-    </div>
-  `;
-}
-
-function attachZone(card, id) {
-  const zone = card.querySelector('.img-zone');
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault(); zone.classList.remove('dragover');
-    const f = e.dataTransfer.files[0];
-    if (f && f.type.startsWith('image/')) loadImg(f, id);
-  });
-}
-
-/* ── 카드 추가 ── */
-function addCard(platform) {
-  counters[platform]++;
-  const n  = counters[platform];
-  const id = `${platform}-${n}`;
-  const card = document.createElement('div');
-  card.className = 'comment-card';
-  card.id = `card-${id}`;
-  card.innerHTML = buildCard(id, n);
-  attachZone(card, id);
-  document.getElementById(`list-${platform}`).appendChild(card);
-}
-
-/* ── 카드 삭제 ── */
-function delCard(id) { document.getElementById(`card-${id}`)?.remove(); }
-
-/* ── 이미지 ── */
-function handleFile(e, id) { const f = e.target.files[0]; if (f) loadImg(f, id); }
-function loadImg(file, id) {
-  const r = new FileReader();
-  r.onload = ev => {
-    document.getElementById(`img-${id}`).src = ev.target.result;
-    document.getElementById(`zone-${id}`).classList.add('filled');
-  };
-  r.readAsDataURL(file);
-}
-function delImg(e, id) {
-  e.stopPropagation();
-  document.getElementById(`img-${id}`).src = '';
-  document.getElementById(`zone-${id}`).classList.remove('filled');
-}
-
-/* ── 저장 (작업용 / 공유용) ── */
-function saveFile(readOnly) {
-  const clone = document.documentElement.cloneNode(true);
-
-  /* textarea 값 고정 */
-  document.querySelectorAll('textarea').forEach((el, i) => {
-    const c = clone.querySelectorAll('textarea')[i];
-    if (c) c.textContent = el.value;
-  });
-
-  /* input 값 고정 */
-  document.querySelectorAll('input[type=text], input[type=date]').forEach((el, i) => {
-    const c = clone.querySelectorAll('input[type=text], input[type=date]')[i];
-    if (c) c.setAttribute('value', el.value);
-  });
-
-  /* img src 고정 */
-  document.querySelectorAll('.img-preview').forEach(img => {
-    const c = clone.querySelector(`#${img.id}`);
-    if (c && img.src) c.setAttribute('src', img.src);
-  });
-
-  /* 하단 버튼 항상 제거 */
-  clone.querySelectorAll('.bottom-btns').forEach(el => el.remove());
-
-  if (readOnly) {
-    /* 공유용: 편집 UI 제거 + 읽기 전용 */
-    clone.querySelectorAll('.card-del, .add-btn, .img-del, .img-zone input[type=file], .img-hint').forEach(el => el.remove());
-    clone.querySelectorAll('textarea, input').forEach(el => {
-      el.setAttribute('readonly', '');
-      el.setAttribute('tabindex', '-1');
-    });
-    /* textarea를 div로 교체해서 내용 전체 표시 */
-    clone.querySelectorAll('textarea').forEach((orig, i) => {
-      const div = document.createElement('div');
-      // 기존 클래스 유지
-      div.className = orig.className;
-      div.style.cssText = orig.style.cssText;
-      div.style.height = 'auto';
-      div.style.minHeight = 'unset';
-      div.style.overflow = 'visible';
-      div.style.whiteSpace = 'pre-wrap';
-      div.style.wordBreak = 'break-word';
-      div.style.cursor = 'default';
-      div.textContent = orig.value || orig.textContent || '';
-      orig.parentNode.replaceChild(div, orig);
-    });
-    clone.querySelectorAll('.img-zone').forEach(el => el.style.cursor = 'default');
-    const lockStyle = document.createElement('style');
-    lockStyle.textContent = `
-      input { pointer-events: none !important; }
-      .img-zone { pointer-events: none !important; }
-      .tab-btn { pointer-events: auto !important; cursor: pointer !important; }
-    `;
-    clone.querySelector('head').appendChild(lockStyle);
-  }
-
-  const today = new Date().toISOString().slice(0, 10);
-  const name  = readOnly ? `sns-report.html` : `sns-report-work.html`;
-  const blob  = new Blob(['<!DOCTYPE html>\n' + clone.outerHTML], { type: 'text/html;charset=utf-8' });
-  const url   = URL.createObjectURL(blob);
-  const a     = document.createElement('a');
-  a.href = url; a.download = name; a.click();
-  URL.revokeObjectURL(url);
-}
-
-/* ── 자동저장 (localStorage) ── */
-const SAVE_KEY = 'sns-report-data';
-
-function collectData() {
-  const data = {
-    author: document.getElementById('meta-author').value,
-    date:   document.getElementById('meta-date').value,
-    cards:  []
-  };
-  document.querySelectorAll('.comment-card').forEach(card => {
-    const id = card.id.replace('card-', '');
-    const platform = id.split('-')[0];
-    const img = document.getElementById(`img-${id}`);
-    data.cards.push({
-      id, platform,
-      title: document.getElementById(`title-${id}`)?.value || '',
-      orig:  document.getElementById(`orig-${id}`)?.value  || '',
-      trans: document.getElementById(`trans-${id}`)?.value || '',
-      memo:  document.getElementById(`memo-${id}`)?.value  || '',
-      img:   img?.src?.startsWith('data:') ? img.src : ''
-    });
-  });
-  return data;
-}
-
-function autoSave() {
-  try {
-    localStorage.setItem(SAVE_KEY, JSON.stringify(collectData()));
-  } catch(e) { /* 용량 초과 시 무시 */ }
-}
-
-function restoreData() {
-  const raw = localStorage.getItem(SAVE_KEY);
-  if (!raw) return;
-  try {
-    const data = JSON.parse(raw);
-
-    if (data.author) document.getElementById('meta-author').value = data.author;
-    if (data.date)   document.getElementById('meta-date').value   = data.date;
-
-    // 플랫폼별 기존 카드 제거 후 복원
-    PLATFORMS.forEach(p => {
-      document.getElementById(`list-${p}`).innerHTML = '';
-      counters[p] = 0;
-    });
-
-    data.cards.forEach(c => {
-      counters[c.platform]++;
-      const n  = counters[c.platform];
-      const id = `${c.platform}-${n}`;
-
-      const card = document.createElement('div');
-      card.className = 'comment-card';
-      card.id = `card-${id}`;
-      card.innerHTML = buildCard(id, n);
-      attachZone(card, id);
-      document.getElementById(`list-${c.platform}`).appendChild(card);
-
-      if (c.title) document.getElementById(`title-${id}`).value = c.title;
-      if (c.orig)  document.getElementById(`orig-${id}`).value  = c.orig;
-      if (c.trans) document.getElementById(`trans-${id}`).value = c.trans;
-      if (c.memo)  {
-        const m = document.getElementById(`memo-${id}`);
-        m.value = c.memo;
-        autoResize(m);
+      function switchTab(p) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.platform-section').forEach(s => s.classList.remove('active'));
+        document.querySelector('.tab-btn[data-p="' + p + '"]').classList.add('active');
+        document.getElementById('sec-' + p).classList.add('active');
       }
-      if (c.img) {
-        document.getElementById(`img-${id}`).src = c.img;
-        document.getElementById(`zone-${id}`).classList.add('filled');
-      }
-    });
-  } catch(e) { console.warn('복원 실패', e); }
-}
-
-// 입력 이벤트마다 자동저장 (디바운스 500ms)
-let saveTimer;
-document.addEventListener('input',  () => { clearTimeout(saveTimer); saveTimer = setTimeout(autoSave, 500); });
-document.addEventListener('change', () => { clearTimeout(saveTimer); saveTimer = setTimeout(autoSave, 500); });
-
-/* ── 초기화 ── */
-document.getElementById('meta-date').valueAsDate = new Date();
-restoreData();
-// 복원된 카드가 없으면 각 탭 기본 1개 생성
-PLATFORMS.forEach(p => {
-  if (document.getElementById(`list-${p}`).children.length === 0) addCard(p);
-});
-</script>
-
-
-</body></html>
+    </script></body></html>
